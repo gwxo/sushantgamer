@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>SUSHANT </title>
+  <title>SUSHANT — Mini Games Hub</title>
   <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Black+Ops+One&family=Space+Grotesk:wght@400;500;600;700&display=swap');
@@ -435,11 +435,24 @@
     }
     .sound-toggle:hover { background: #00FFFF22; }
 
+    /* TYPING TEST */
+    #ty-input:focus { border-color: #00FFFF; box-shadow: 0 0 0 2px #00FFFF44; }
+
+    /* SIMON BUTTONS */
+    .simon-btn:active { filter: brightness(1.8); transform: scale(0.93); }
+
+    /* 2048 board swipe area */
+    #g2048-board { touch-action: none; }
+
+    /* MINESWEEPER */
+    #ms-board { touch-action: manipulation; }
+
     /* MOBILE ADJUSTMENTS */
     @media (max-width: 640px) {
       body { cursor: auto; }
       #cursor, #cursor-ring { display: none; }
       .ttt-cell { font-size: 2rem; }
+      .simon-btn { font-size: 1.5rem !important; }
     }
 
     /* SCORE PULSE */
@@ -481,10 +494,10 @@
 
   <div style="position:relative;z-index:1;display:flex;flex-direction:column;align-items:center;gap:24px;padding:20px;text-align:center;">
     <div style="background:#00FFFF;color:#000;font-family:'Black Ops One',cursive;font-size:0.8rem;padding:6px 20px;letter-spacing:4px;border:2px solid #000;box-shadow:4px 4px 0 #000;">
-      ★ WELCOME TO THE SUSHANT GAMING ROOM ★
+      ★ WELCOME TO THE SUSHANT CODE ★
     </div>
     <h1 class="hero-title">SUSH<span>ANT</span></h1>
-    <p class="hero-sub">Games. Zero Downloads. Infinite Fun.</p>
+    <p class="hero-sub">14 Games. Zero Downloads. Infinite Fun.</p>
     <button class="neo-btn px-10 py-4 text-xl font-arcade tracking-widest" onclick="showPage('home')">
       ▶ PLAY NOW
     </button>
@@ -502,11 +515,17 @@
       <div style="border:2px solid #333;padding:8px 16px;font-size:0.8rem;color:#555;">🔨 WHACK-A-MOLE</div>
       <div style="border:2px solid #333;padding:8px 16px;font-size:0.8rem;color:#555;">❓ QUIZ</div>
       <div style="border:2px solid #333;padding:8px 16px;font-size:0.8rem;color:#555;">🎲 DICE ROLLER</div>
+      <div style="border:2px solid #333;padding:8px 16px;font-size:0.8rem;color:#555;">🧱 BREAKOUT</div>
+      <div style="border:2px solid #333;padding:8px 16px;font-size:0.8rem;color:#555;">🔢 2048</div>
+      <div style="border:2px solid #333;padding:8px 16px;font-size:0.8rem;color:#555;">🐦 FLAPPY BIRD</div>
+      <div style="border:2px solid #333;padding:8px 16px;font-size:0.8rem;color:#555;">🎵 SIMON SAYS</div>
+      <div style="border:2px solid #333;padding:8px 16px;font-size:0.8rem;color:#555;">⌨️ TYPING TEST</div>
+      <div style="border:2px solid #333;padding:8px 16px;font-size:0.8rem;color:#555;">💣 MINESWEEPER</div>
     </div>
   </div>
 
   <div class="ticker">
-    <span class="ticker-inner">★ TIC TAC TOE &nbsp;·&nbsp; SNAKE GAME &nbsp;·&nbsp; MEMORY MATCH &nbsp;·&nbsp; ROCK PAPER SCISSORS &nbsp;·&nbsp; WHACK-A-MOLE &nbsp;·&nbsp; QUIZ GAME &nbsp;·&nbsp; NUMBER GUESSING &nbsp;·&nbsp; DICE ROLLER &nbsp;·&nbsp; 8 GAMES READY TO PLAY &nbsp;·&nbsp; </span>
+    <span class="ticker-inner">★ TIC TAC TOE &nbsp;·&nbsp; SNAKE &nbsp;·&nbsp; MEMORY MATCH &nbsp;·&nbsp; ROCK PAPER SCISSORS &nbsp;·&nbsp; WHACK-A-MOLE &nbsp;·&nbsp; QUIZ &nbsp;·&nbsp; NUMBER GUESSING &nbsp;·&nbsp; DICE ROLLER &nbsp;·&nbsp; BREAKOUT &nbsp;·&nbsp; 2048 &nbsp;·&nbsp; FLAPPY BIRD &nbsp;·&nbsp; SIMON SAYS &nbsp;·&nbsp; TYPING TEST &nbsp;·&nbsp; MINESWEEPER &nbsp;·&nbsp; 14 GAMES READY TO PLAY &nbsp;·&nbsp; </span>
   </div>
 </section>
 
@@ -618,6 +637,78 @@
           </div>
         </div>
 
+        <div class="neo-card p-5 flex flex-col gap-3" onclick="loadGame('breakout')">
+          <div class="game-card-icon">🧱</div>
+          <div>
+            <div style="font-family:'Black Ops One',cursive;font-size:1.1rem;color:#fff;margin-bottom:4px;">BREAKOUT</div>
+            <div style="font-size:0.75rem;color:#666;">Solo · Arcade Classic</div>
+          </div>
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-top:auto;">
+            <span class="score-badge">HIGH: <span id="hs-breakout">0</span></span>
+            <button class="neo-btn px-3 py-1 text-sm">PLAY</button>
+          </div>
+        </div>
+
+        <div class="neo-card p-5 flex flex-col gap-3" onclick="loadGame('g2048')">
+          <div class="game-card-icon">🔢</div>
+          <div>
+            <div style="font-family:'Black Ops One',cursive;font-size:1.1rem;color:#fff;margin-bottom:4px;">2048</div>
+            <div style="font-size:0.75rem;color:#666;">Solo · Strategy</div>
+          </div>
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-top:auto;">
+            <span class="score-badge">HIGH: <span id="hs-g2048">0</span></span>
+            <button class="neo-btn px-3 py-1 text-sm">PLAY</button>
+          </div>
+        </div>
+
+        <div class="neo-card p-5 flex flex-col gap-3" onclick="loadGame('flappy')">
+          <div class="game-card-icon">🐦</div>
+          <div>
+            <div style="font-family:'Black Ops One',cursive;font-size:1.1rem;color:#fff;margin-bottom:4px;">FLAPPY BIRD</div>
+            <div style="font-size:0.75rem;color:#666;">Solo · Endless</div>
+          </div>
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-top:auto;">
+            <span class="score-badge">HIGH: <span id="hs-flappy">0</span></span>
+            <button class="neo-btn px-3 py-1 text-sm">PLAY</button>
+          </div>
+        </div>
+
+        <div class="neo-card p-5 flex flex-col gap-3" onclick="loadGame('simon')">
+          <div class="game-card-icon">🎵</div>
+          <div>
+            <div style="font-family:'Black Ops One',cursive;font-size:1.1rem;color:#fff;margin-bottom:4px;">SIMON SAYS</div>
+            <div style="font-size:0.75rem;color:#666;">Solo · Memory</div>
+          </div>
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-top:auto;">
+            <span class="score-badge">HIGH: <span id="hs-simon">0</span></span>
+            <button class="neo-btn px-3 py-1 text-sm">PLAY</button>
+          </div>
+        </div>
+
+        <div class="neo-card p-5 flex flex-col gap-3" onclick="loadGame('typing')">
+          <div class="game-card-icon">⌨️</div>
+          <div>
+            <div style="font-family:'Black Ops One',cursive;font-size:1.1rem;color:#fff;margin-bottom:4px;">TYPING TEST</div>
+            <div style="font-size:0.75rem;color:#666;">Solo · Speed</div>
+          </div>
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-top:auto;">
+            <span class="score-badge">HIGH: <span id="hs-typing">0</span></span>
+            <button class="neo-btn px-3 py-1 text-sm">PLAY</button>
+          </div>
+        </div>
+
+        <div class="neo-card p-5 flex flex-col gap-3" onclick="loadGame('minesweeper')">
+          <div class="game-card-icon">💣</div>
+          <div>
+            <div style="font-family:'Black Ops One',cursive;font-size:1.1rem;color:#fff;margin-bottom:4px;">MINESWEEPER</div>
+            <div style="font-size:0.75rem;color:#666;">Solo · Logic</div>
+          </div>
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-top:auto;">
+            <span class="score-badge">HIGH: <span id="hs-minesweeper">0</span></span>
+            <button class="neo-btn px-3 py-1 text-sm">PLAY</button>
+          </div>
+        </div>
+
       </div>
 
       <!-- TOTAL SCORES -->
@@ -650,12 +741,14 @@
 
 const state = {
   soundOn: true,
-  highScores: { tictactoe:0, rps:0, memory:0, snake:0, numguess:0, whack:0, quiz:0, dice:0 },
+  highScores: { tictactoe:0, rps:0, memory:0, snake:0, numguess:0, whack:0, quiz:0, dice:0, breakout:0, g2048:0, flappy:0, simon:0, typing:0, minesweeper:0 },
   totalScore: 0,
   currentGame: null,
   snakeInterval: null,
   whackInterval: null,
-  whackTimeout: null
+  whackTimeout: null,
+  breakoutAnim: null,
+  flappyAnim: null
 };
 
 // Audio Context
@@ -720,7 +813,7 @@ function updateHighScore(game, score) {
 }
 
 function updateScoreTracker() {
-  const names = { tictactoe:'Tic Tac Toe', rps:'RPS', memory:'Memory', snake:'Snake', numguess:'Num Guess', whack:'Whack-Mole', quiz:'Quiz', dice:'Dice' };
+  const names = { tictactoe:'Tic Tac Toe', rps:'RPS', memory:'Memory', snake:'Snake', numguess:'Num Guess', whack:'Whack-Mole', quiz:'Quiz', dice:'Dice', breakout:'Breakout', g2048:'2048', flappy:'Flappy Bird', simon:'Simon Says', typing:'Typing Test', minesweeper:'Minesweeper' };
   const t = document.getElementById('scoreTracker');
   if (!t) return;
   t.innerHTML = Object.entries(state.highScores).map(([k,v]) =>
@@ -769,7 +862,13 @@ function loadGame(gameId) {
     numguess: '🔢 NUMBER GUESS',
     whack: '🔨 WHACK-A-MOLE',
     quiz: '❓ QUIZ GAME',
-    dice: '🎲 DICE ROLLER'
+    dice: '🎲 DICE ROLLER',
+    breakout: '🧱 BREAKOUT',
+    g2048: '🔢 2048',
+    flappy: '🐦 FLAPPY BIRD',
+    simon: '🎵 SIMON SAYS',
+    typing: '⌨️ TYPING TEST',
+    minesweeper: '💣 MINESWEEPER'
   };
   document.getElementById('gameTitle').textContent = titles[gameId] || gameId;
 
@@ -781,24 +880,32 @@ function loadGame(gameId) {
     void gc.offsetWidth;
     gc.classList.add('fade-in');
     switch(gameId) {
-      case 'tictactoe': renderTicTacToe(); break;
-      case 'rps':        renderRPS(); break;
-      case 'memory':     renderMemory(); break;
-      case 'snake':      renderSnake(); break;
-      case 'numguess':   renderNumGuess(); break;
-      case 'whack':      renderWhack(); break;
-      case 'quiz':       renderQuiz(); break;
-      case 'dice':       renderDice(); break;
+      case 'tictactoe':   renderTicTacToe(); break;
+      case 'rps':         renderRPS(); break;
+      case 'memory':      renderMemory(); break;
+      case 'snake':       renderSnake(); break;
+      case 'numguess':    renderNumGuess(); break;
+      case 'whack':       renderWhack(); break;
+      case 'quiz':        renderQuiz(); break;
+      case 'dice':        renderDice(); break;
+      case 'breakout':    renderBreakout(); break;
+      case 'g2048':       render2048(); break;
+      case 'flappy':      renderFlappy(); break;
+      case 'simon':       renderSimon(); break;
+      case 'typing':      renderTyping(); break;
+      case 'minesweeper': renderMinesweeper(); break;
     }
   }, 400);
 }
 
 function stopAllGames() {
-  if (state.snakeInterval) { clearInterval(state.snakeInterval); state.snakeInterval = null; }
-  if (state.whackInterval) { clearInterval(state.whackInterval); state.whackInterval = null; }
-  if (state.whackTimeout)  { clearTimeout(state.whackTimeout);   state.whackTimeout = null; }
-  // Remove keyboard listeners
+  if (state.snakeInterval)  { clearInterval(state.snakeInterval);  state.snakeInterval = null; }
+  if (state.whackInterval)  { clearInterval(state.whackInterval);  state.whackInterval = null; }
+  if (state.whackTimeout)   { clearTimeout(state.whackTimeout);    state.whackTimeout = null; }
+  if (state.breakoutAnim)   { cancelAnimationFrame(state.breakoutAnim); state.breakoutAnim = null; }
+  if (state.flappyAnim)     { cancelAnimationFrame(state.flappyAnim);   state.flappyAnim = null; }
   document.onkeydown = null;
+  document.onkeyup   = null;
 }
 
 // ===========================
@@ -1583,6 +1690,818 @@ function renderDice() {
       }
     }, 80);
   };
+}
+
+// ===========================
+//   9. BREAKOUT
+// ===========================
+function renderBreakout() {
+  const gc = document.getElementById('game-container');
+  gc.innerHTML = `
+    <div style="display:flex;flex-direction:column;gap:14px;align-items:center;">
+      <div style="display:flex;gap:20px;flex-wrap:wrap;justify-content:center;">
+        <div style="border:3px solid #00FFFF;padding:8px 20px;text-align:center;">
+          <div style="font-family:'Black Ops One',cursive;font-size:1.5rem;color:#00FFFF;" id="bo-score">0</div>
+          <div style="font-size:0.75rem;color:#666;">SCORE</div>
+        </div>
+        <div style="border:3px solid #fff;padding:8px 20px;text-align:center;">
+          <div style="font-family:'Black Ops One',cursive;font-size:1.5rem;color:#fff;" id="bo-lives">3</div>
+          <div style="font-size:0.75rem;color:#666;">LIVES</div>
+        </div>
+        <div style="border:3px solid #555;padding:8px 20px;text-align:center;">
+          <div style="font-family:'Black Ops One',cursive;font-size:1.5rem;color:#555;" id="bo-best">${state.highScores.breakout}</div>
+          <div style="font-size:0.75rem;color:#666;">BEST</div>
+        </div>
+      </div>
+      <canvas id="boCanvas" width="420" height="320" style="width:min(420px,95vw);height:auto;border:3px solid #00FFFF;box-shadow:6px 6px 0 #00FFFF;background:#000;display:block;"></canvas>
+      <div id="bo-status" class="status-msg" style="color:#00FFFF;min-height:28px;text-align:center;">CLICK OR PRESS SPACE TO START</div>
+      <div style="font-size:0.8rem;color:#555;">MOVE MOUSE / TOUCH TO CONTROL PADDLE</div>
+      <button class="neo-btn px-6 py-2 text-sm" onclick="renderBreakout()">🔄 RESTART</button>
+    </div>`;
+
+  const canvas = document.getElementById('boCanvas');
+  const ctx = canvas.getContext('2d');
+  const W = 420, H = 320;
+  const ROWS = 5, COLS = 9;
+  const BRICK_W = Math.floor(W / COLS) - 3;
+  const BRICK_H = 18;
+  const PAD_W = 70, PAD_H = 10;
+
+  let score = 0, lives = 3, running = false, gameOver = false;
+  let padX = W / 2 - PAD_W / 2;
+  let ball = { x: W/2, y: H - 50, dx: 3.5, dy: -3.5, r: 7 };
+  let bricks = [];
+
+  const colors = ['#00FFFF','#00CCCC','#00AAAA','#008888','#006666'];
+  function initBricks() {
+    bricks = [];
+    for (let r = 0; r < ROWS; r++)
+      for (let c = 0; c < COLS; c++)
+        bricks.push({ x: c*(BRICK_W+3)+2, y: r*(BRICK_H+4)+30, alive: true, color: colors[r] });
+  }
+  initBricks();
+
+  function drawScene() {
+    ctx.clearRect(0,0,W,H);
+    ctx.fillStyle='#000'; ctx.fillRect(0,0,W,H);
+    // bricks
+    bricks.forEach(b => {
+      if (!b.alive) return;
+      ctx.fillStyle = b.color;
+      ctx.fillRect(b.x, b.y, BRICK_W, BRICK_H);
+      ctx.strokeStyle = '#000'; ctx.lineWidth = 2;
+      ctx.strokeRect(b.x, b.y, BRICK_W, BRICK_H);
+    });
+    // paddle
+    ctx.fillStyle = '#00FFFF';
+    ctx.fillRect(padX, H-PAD_H-6, PAD_W, PAD_H);
+    ctx.strokeStyle='#fff'; ctx.lineWidth=2;
+    ctx.strokeRect(padX, H-PAD_H-6, PAD_W, PAD_H);
+    // ball
+    ctx.beginPath();
+    ctx.arc(ball.x, ball.y, ball.r, 0, Math.PI*2);
+    ctx.fillStyle='#fff'; ctx.fill();
+    ctx.strokeStyle='#00FFFF'; ctx.lineWidth=2; ctx.stroke();
+
+    if (!running && !gameOver) {
+      ctx.fillStyle='rgba(0,0,0,0.6)'; ctx.fillRect(0,0,W,H);
+      ctx.fillStyle='#00FFFF'; ctx.font='bold 22px "Black Ops One",cursive';
+      ctx.textAlign='center'; ctx.fillText('CLICK TO START',W/2,H/2);
+    }
+  }
+
+  function loop() {
+    if (!running) { drawScene(); return; }
+    ball.x += ball.dx; ball.y += ball.dy;
+    // walls
+    if (ball.x - ball.r < 0) { ball.x = ball.r; ball.dx = Math.abs(ball.dx); }
+    if (ball.x + ball.r > W) { ball.x = W - ball.r; ball.dx = -Math.abs(ball.dx); }
+    if (ball.y - ball.r < 0) { ball.y = ball.r; ball.dy = Math.abs(ball.dy); }
+    // bottom
+    if (ball.y + ball.r > H) {
+      lives--; document.getElementById('bo-lives').textContent = lives;
+      playSound('lose');
+      if (lives <= 0) {
+        running = false; gameOver = true;
+        document.getElementById('bo-status').textContent = `💀 GAME OVER! SCORE: ${score}`;
+        updateHighScore('breakout', score);
+        document.getElementById('bo-best').textContent = state.highScores.breakout;
+        drawScene(); return;
+      }
+      ball = { x:W/2, y:H-50, dx:3.5, dy:-3.5, r:7 };
+      running = false;
+      document.getElementById('bo-status').textContent = `LIFE LOST! CLICK TO CONTINUE`;
+      drawScene(); return;
+    }
+    // paddle collision
+    if (ball.y+ball.r >= H-PAD_H-6 && ball.y+ball.r <= H-6 && ball.x >= padX && ball.x <= padX+PAD_W) {
+      ball.dy = -Math.abs(ball.dy);
+      const hitPos = (ball.x - (padX + PAD_W/2)) / (PAD_W/2);
+      ball.dx = hitPos * 5;
+      playSound('point');
+    }
+    // brick collisions
+    let allGone = true;
+    bricks.forEach(b => {
+      if (!b.alive) return;
+      allGone = false;
+      if (ball.x > b.x && ball.x < b.x+BRICK_W && ball.y-ball.r < b.y+BRICK_H && ball.y+ball.r > b.y) {
+        b.alive = false;
+        ball.dy *= -1;
+        score += 10;
+        document.getElementById('bo-score').textContent = score;
+        playSound('point');
+      }
+    });
+    if (allGone) {
+      running = false;
+      document.getElementById('bo-status').textContent = `🎉 YOU WIN! SCORE: ${score}`;
+      updateHighScore('breakout', score);
+      document.getElementById('bo-best').textContent = state.highScores.breakout;
+      playSound('win');
+      drawScene(); return;
+    }
+    drawScene();
+    state.breakoutAnim = requestAnimationFrame(loop);
+  }
+
+  // Mouse / touch control
+  canvas.addEventListener('mousemove', e => {
+    const rect = canvas.getBoundingClientRect();
+    const scaleX = W / rect.width;
+    padX = Math.min(W-PAD_W, Math.max(0, (e.clientX - rect.left) * scaleX - PAD_W/2));
+    if (!running && !gameOver) drawScene();
+  });
+  canvas.addEventListener('touchmove', e => {
+    e.preventDefault();
+    const rect = canvas.getBoundingClientRect();
+    const scaleX = W / rect.width;
+    padX = Math.min(W-PAD_W, Math.max(0, (e.touches[0].clientX - rect.left) * scaleX - PAD_W/2));
+  }, { passive: false });
+
+  function startGame() {
+    if (gameOver) return;
+    if (!running) { running = true; document.getElementById('bo-status').textContent = 'USE MOUSE TO MOVE PADDLE'; state.breakoutAnim = requestAnimationFrame(loop); }
+  }
+  canvas.addEventListener('click', startGame);
+  document.onkeydown = e => { if (e.key===' ') { e.preventDefault(); startGame(); } };
+
+  drawScene();
+}
+
+// ===========================
+//   10. 2048
+// ===========================
+function render2048() {
+  const gc = document.getElementById('game-container');
+  gc.innerHTML = `
+    <div style="display:flex;flex-direction:column;gap:14px;align-items:center;">
+      <div style="display:flex;gap:16px;flex-wrap:wrap;justify-content:center;">
+        <div style="border:3px solid #00FFFF;padding:8px 20px;text-align:center;">
+          <div style="font-family:'Black Ops One',cursive;font-size:1.5rem;color:#00FFFF;" id="g2048-score">0</div>
+          <div style="font-size:0.75rem;color:#666;">SCORE</div>
+        </div>
+        <div style="border:3px solid #555;padding:8px 20px;text-align:center;">
+          <div style="font-family:'Black Ops One',cursive;font-size:1.5rem;color:#555;" id="g2048-best">${state.highScores.g2048}</div>
+          <div style="font-size:0.75rem;color:#666;">BEST</div>
+        </div>
+      </div>
+      <div id="g2048-board" style="display:grid;grid-template-columns:repeat(4,1fr);gap:8px;padding:12px;background:#111;border:3px solid #fff;width:min(320px,92vw);box-shadow:6px 6px 0 #00FFFF;"></div>
+      <div id="g2048-status" class="status-msg" style="color:#00FFFF;min-height:28px;"></div>
+      <div style="font-size:0.8rem;color:#555;">USE ARROW KEYS OR SWIPE TO MOVE</div>
+      <button class="neo-btn px-6 py-2 text-sm" onclick="render2048()">🔄 NEW GAME</button>
+    </div>`;
+
+  const tileColors = {
+    0:'#111',2:'#1a1a1a',4:'#222',8:'#003333',16:'#004444',
+    32:'#005555',64:'#006666',128:'#007777',256:'#008888',
+    512:'#009999',1024:'#00aaaa',2048:'#00ffff'
+  };
+
+  let grid = Array.from({length:4}, ()=>Array(4).fill(0));
+  let score = 0, gameOver2 = false;
+
+  function addTile() {
+    const empty = [];
+    for(let r=0;r<4;r++) for(let c=0;c<4;c++) if(!grid[r][c]) empty.push([r,c]);
+    if (!empty.length) return;
+    const [r,c] = empty[Math.floor(Math.random()*empty.length)];
+    grid[r][c] = Math.random() < 0.85 ? 2 : 4;
+  }
+  addTile(); addTile();
+
+  function renderBoard() {
+    const bd = document.getElementById('g2048-board');
+    if (!bd) return;
+    bd.innerHTML = '';
+    for(let r=0;r<4;r++) for(let c=0;c<4;c++) {
+      const v = grid[r][c];
+      const div = document.createElement('div');
+      div.style.cssText = `
+        aspect-ratio:1;display:flex;align-items:center;justify-content:center;
+        font-family:'Black Ops One',cursive;
+        font-size:${v>=1000?'1rem':v>=100?'1.2rem':'1.4rem'};
+        background:${tileColors[Math.min(v,2048)]||'#00ffff'};
+        color:${v>=64?'#000':'#00FFFF'};
+        border:2px solid ${v?'#00FFFF':'#222'};
+        transition:all 0.1s;
+      `;
+      div.textContent = v || '';
+      bd.appendChild(div);
+    }
+    document.getElementById('g2048-score').textContent = score;
+    document.getElementById('g2048-best').textContent = state.highScores.g2048;
+  }
+
+  function slide(row) {
+    let arr = row.filter(v=>v);
+    for(let i=0;i<arr.length-1;i++) {
+      if(arr[i]===arr[i+1]) { arr[i]*=2; score+=arr[i]; arr.splice(i+1,1); i--; }
+    }
+    while(arr.length<4) arr.push(0);
+    return arr;
+  }
+
+  function move(dir) {
+    if(gameOver2) return;
+    let moved = false;
+    const prev = JSON.stringify(grid);
+    if(dir==='left')  grid = grid.map(r=>slide(r));
+    if(dir==='right') grid = grid.map(r=>slide([...r].reverse()).reverse());
+    if(dir==='up')    grid = transpose(grid.map((_,i)=>grid.map(r=>r[i]))).map(r=>slide(r));
+    if(dir==='down')  grid = transpose(grid.map((_,i)=>grid.map(r=>r[i]))).map(r=>slide([...r].reverse()).reverse());
+    if(JSON.stringify(grid)!==prev) { moved=true; addTile(); playSound('point'); }
+    updateHighScore('g2048', score);
+    renderBoard();
+    if(grid.some(r=>r.includes(2048))) {
+      document.getElementById('g2048-status').textContent='🎉 YOU REACHED 2048!';
+      playSound('win'); gameOver2=false;
+    } else if(!canMove()) {
+      document.getElementById('g2048-status').textContent='💀 GAME OVER!';
+      playSound('lose'); gameOver2=true;
+    }
+  }
+
+  function transpose(m) { return m[0].map((_,i)=>m.map(r=>r[i])); }
+  function canMove() {
+    for(let r=0;r<4;r++) for(let c=0;c<4;c++) {
+      if(!grid[r][c]) return true;
+      if(c<3&&grid[r][c]===grid[r][c+1]) return true;
+      if(r<3&&grid[r][c]===grid[r+1][c]) return true;
+    }
+    return false;
+  }
+
+  document.onkeydown = e => {
+    const map = {ArrowLeft:'left',ArrowRight:'right',ArrowUp:'up',ArrowDown:'down'};
+    if(map[e.key]) { e.preventDefault(); move(map[e.key]); }
+  };
+
+  // Swipe
+  let tx=0,ty=0;
+  const bd = document.getElementById('g2048-board');
+  bd.addEventListener('touchstart',e=>{tx=e.touches[0].clientX;ty=e.touches[0].clientY;},{passive:true});
+  bd.addEventListener('touchend',e=>{
+    const dx=e.changedTouches[0].clientX-tx, dy=e.changedTouches[0].clientY-ty;
+    if(Math.abs(dx)>Math.abs(dy)) move(dx>0?'right':'left');
+    else move(dy>0?'down':'up');
+  },{passive:true});
+
+  renderBoard();
+}
+
+// ===========================
+//   11. FLAPPY BIRD
+// ===========================
+function renderFlappy() {
+  const gc = document.getElementById('game-container');
+  gc.innerHTML = `
+    <div style="display:flex;flex-direction:column;gap:14px;align-items:center;">
+      <div style="display:flex;gap:20px;flex-wrap:wrap;justify-content:center;">
+        <div style="border:3px solid #00FFFF;padding:8px 20px;text-align:center;">
+          <div style="font-family:'Black Ops One',cursive;font-size:1.5rem;color:#00FFFF;" id="fl-score">0</div>
+          <div style="font-size:0.75rem;color:#666;">SCORE</div>
+        </div>
+        <div style="border:3px solid #555;padding:8px 20px;text-align:center;">
+          <div style="font-family:'Black Ops One',cursive;font-size:1.5rem;color:#555;" id="fl-best">${state.highScores.flappy}</div>
+          <div style="font-size:0.75rem;color:#666;">BEST</div>
+        </div>
+      </div>
+      <canvas id="flCanvas" width="360" height="480" style="width:min(300px,85vw);height:auto;border:3px solid #00FFFF;box-shadow:6px 6px 0 #00FFFF;background:#000;display:block;cursor:pointer;"></canvas>
+      <div id="fl-status" class="status-msg" style="color:#00FFFF;text-align:center;">TAP / CLICK / SPACE TO FLAP</div>
+    </div>`;
+
+  const canvas = document.getElementById('flCanvas');
+  const ctx = canvas.getContext('2d');
+  const W=360, H=480;
+  const PIPE_W=52, GAP=140, PIPE_SPEED=2.5;
+  const GRAVITY=0.35, JUMP=-7;
+
+  let bird={x:80,y:H/2,vy:0,r:16};
+  let pipes=[], score=0, started=false, dead=false, frameCount=0;
+
+  function addPipe() {
+    const minH=60, maxH=H-GAP-60;
+    const topH=Math.floor(Math.random()*(maxH-minH)+minH);
+    pipes.push({x:W, topH, scored:false});
+  }
+
+  function drawBird() {
+    ctx.save();
+    ctx.translate(bird.x, bird.y);
+    const angle = Math.min(Math.max(bird.vy*3,-30),70)*Math.PI/180;
+    ctx.rotate(angle);
+    ctx.fillStyle='#00FFFF';
+    ctx.beginPath();
+    ctx.ellipse(0,0,bird.r,bird.r*0.75,0,0,Math.PI*2);
+    ctx.fill();
+    ctx.strokeStyle='#fff'; ctx.lineWidth=2; ctx.stroke();
+    // eye
+    ctx.fillStyle='#000';
+    ctx.beginPath(); ctx.arc(6,-4,4,0,Math.PI*2); ctx.fill();
+    ctx.fillStyle='#fff';
+    ctx.beginPath(); ctx.arc(7,-4,2,0,Math.PI*2); ctx.fill();
+    // wing
+    ctx.fillStyle='#008888';
+    ctx.beginPath(); ctx.ellipse(-4,4,8,5,0.3,0,Math.PI*2); ctx.fill();
+    ctx.restore();
+  }
+
+  function drawPipes() {
+    pipes.forEach(p => {
+      ctx.fillStyle='#00FFFF';
+      ctx.fillRect(p.x, 0, PIPE_W, p.topH);
+      ctx.fillRect(p.x, p.topH+GAP, PIPE_W, H-p.topH-GAP);
+      ctx.strokeStyle='#fff'; ctx.lineWidth=2;
+      ctx.strokeRect(p.x,0,PIPE_W,p.topH);
+      ctx.strokeRect(p.x,p.topH+GAP,PIPE_W,H-p.topH-GAP);
+      // caps
+      ctx.fillStyle='#00AAAA';
+      ctx.fillRect(p.x-4, p.topH-14, PIPE_W+8, 14);
+      ctx.fillRect(p.x-4, p.topH+GAP, PIPE_W+8, 14);
+      ctx.strokeStyle='#fff';
+      ctx.strokeRect(p.x-4,p.topH-14,PIPE_W+8,14);
+      ctx.strokeRect(p.x-4,p.topH+GAP,PIPE_W+8,14);
+    });
+  }
+
+  function drawBg() {
+    ctx.fillStyle='#000'; ctx.fillRect(0,0,W,H);
+    // grid
+    ctx.strokeStyle='rgba(0,255,255,0.04)'; ctx.lineWidth=1;
+    for(let i=0;i<W;i+=30){ctx.beginPath();ctx.moveTo(i,0);ctx.lineTo(i,H);ctx.stroke();}
+    for(let i=0;i<H;i+=30){ctx.beginPath();ctx.moveTo(0,i);ctx.lineTo(W,i);ctx.stroke();}
+    // ground
+    ctx.fillStyle='#111'; ctx.fillRect(0,H-20,W,20);
+    ctx.strokeStyle='#00FFFF'; ctx.lineWidth=2;
+    ctx.beginPath(); ctx.moveTo(0,H-20); ctx.lineTo(W,H-20); ctx.stroke();
+  }
+
+  function checkCollision(p) {
+    if(bird.y-bird.r<0||bird.y+bird.r>H-20) return true;
+    if(bird.x+bird.r>p.x && bird.x-bird.r<p.x+PIPE_W) {
+      if(bird.y-bird.r<p.topH || bird.y+bird.r>p.topH+GAP) return true;
+    }
+    return false;
+  }
+
+  function drawOverlay(txt) {
+    ctx.fillStyle='rgba(0,0,0,0.65)'; ctx.fillRect(0,0,W,H);
+    ctx.fillStyle='#00FFFF'; ctx.font='bold 26px "Black Ops One",cursive';
+    ctx.textAlign='center'; ctx.fillText(txt,W/2,H/2-20);
+    ctx.fillStyle='#fff'; ctx.font='bold 16px "Space Grotesk",sans-serif';
+    ctx.fillText('TAP / CLICK / SPACE TO '+(!started?'START':'RETRY'),W/2,H/2+20);
+  }
+
+  function gameLoop() {
+    drawBg();
+    if(!started) { drawBird(); drawOverlay('FLAPPY BIRD'); return; }
+    if(dead) { drawPipes(); drawBird(); drawOverlay(`SCORE: ${score}`); return; }
+
+    bird.vy+=GRAVITY; bird.y+=bird.vy;
+    frameCount++;
+    if(frameCount%90===0) addPipe();
+
+    pipes.forEach(p => {
+      p.x -= PIPE_SPEED;
+      if(!p.scored && p.x+PIPE_W < bird.x) {
+        p.scored=true; score++;
+        document.getElementById('fl-score').textContent=score;
+        updateHighScore('flappy', score);
+        document.getElementById('fl-best').textContent=state.highScores.flappy;
+        playSound('point');
+      }
+      if(checkCollision(p)) { dead=true; playSound('lose'); }
+    });
+    pipes=pipes.filter(p=>p.x>-PIPE_W-10);
+    if(bird.y+bird.r>H-20 || bird.y-bird.r<0) { dead=true; playSound('lose'); }
+
+    drawPipes();
+    drawBird();
+    // score
+    ctx.fillStyle='#00FFFF'; ctx.font='bold 28px "Black Ops One",cursive';
+    ctx.textAlign='center'; ctx.fillText(score,W/2,40);
+
+    if(!dead) state.flappyAnim = requestAnimationFrame(gameLoop);
+    else { cancelAnimationFrame(state.flappyAnim); gameLoop(); }
+  }
+
+  function flap() {
+    if(dead) {
+      bird={x:80,y:H/2,vy:0,r:16}; pipes=[]; score=0; frameCount=0; dead=false;
+      document.getElementById('fl-score').textContent=0;
+      state.flappyAnim=requestAnimationFrame(gameLoop);
+    } else if(!started) {
+      started=true;
+      state.flappyAnim=requestAnimationFrame(gameLoop);
+    } else {
+      bird.vy=JUMP; playSound('click');
+    }
+  }
+
+  canvas.addEventListener('click', flap);
+  canvas.addEventListener('touchstart', e=>{e.preventDefault();flap();},{passive:false});
+  document.onkeydown = e => { if(e.key===' '||e.key==='ArrowUp'){e.preventDefault();flap();} };
+
+  gameLoop();
+}
+
+// ===========================
+//   12. SIMON SAYS
+// ===========================
+function renderSimon() {
+  const gc = document.getElementById('game-container');
+  gc.innerHTML = `
+    <div style="display:flex;flex-direction:column;gap:20px;align-items:center;">
+      <div style="display:flex;gap:16px;flex-wrap:wrap;justify-content:center;">
+        <div style="border:3px solid #00FFFF;padding:8px 20px;text-align:center;">
+          <div style="font-family:'Black Ops One',cursive;font-size:1.5rem;color:#00FFFF;" id="si-round">0</div>
+          <div style="font-size:0.75rem;color:#666;">ROUND</div>
+        </div>
+        <div style="border:3px solid #555;padding:8px 20px;text-align:center;">
+          <div style="font-family:'Black Ops One',cursive;font-size:1.5rem;color:#555;" id="si-best">${state.highScores.simon}</div>
+          <div style="font-size:0.75rem;color:#666;">BEST</div>
+        </div>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;width:min(280px,80vw);">
+        <button id="sBtn0" class="simon-btn" onclick="simonPress(0)" style="aspect-ratio:1;background:#005555;border:4px solid #00FFFF;font-size:2rem;cursor:none;transition:all 0.1s;border-radius:4px 40px 4px 4px;">🔵</button>
+        <button id="sBtn1" class="simon-btn" onclick="simonPress(1)" style="aspect-ratio:1;background:#550000;border:4px solid #FF4444;font-size:2rem;cursor:none;transition:all 0.1s;border-radius:40px 4px 4px 4px;">🔴</button>
+        <button id="sBtn2" class="simon-btn" onclick="simonPress(2)" style="aspect-ratio:1;background:#555500;border:4px solid #FFFF00;font-size:2rem;cursor:none;transition:all 0.1s;border-radius:4px 4px 4px 40px;">🟡</button>
+        <button id="sBtn3" class="simon-btn" onclick="simonPress(3)" style="aspect-ratio:1;background:#005500;border:4px solid #00FF00;font-size:2rem;cursor:none;transition:all 0.1s;border-radius:4px 4px 40px 4px;">🟢</button>
+      </div>
+      <div id="si-status" class="status-msg" style="color:#00FFFF;text-align:center;min-height:30px;">PRESS START!</div>
+      <button class="neo-btn px-6 py-3 text-lg" id="si-start" onclick="simonStart()">▶ START</button>
+    </div>`;
+
+  const COLORS = [
+    {bg:'#00AAAA', border:'#00FFFF', flash:'#00FFFF'},
+    {bg:'#AA0000', border:'#FF4444', flash:'#FF4444'},
+    {bg:'#AAAA00', border:'#FFFF00', flash:'#FFFF00'},
+    {bg:'#00AA00', border:'#00FF00', flash:'#00FF00'}
+  ];
+  const siFreqs = [262,330,392,523];
+
+  let sequence=[], userSeq=[], round=0, accepting=false;
+
+  function flashBtn(i, dur=350) {
+    const btn = document.getElementById('sBtn'+i);
+    if(!btn) return;
+    const c = COLORS[i];
+    btn.style.background = c.flash;
+    btn.style.boxShadow = `0 0 20px ${c.flash}`;
+    // play tone
+    try {
+      const ctx2=getAudio(), o=ctx2.createOscillator(), g=ctx2.createGain();
+      o.connect(g); g.connect(ctx2.destination);
+      o.type='sine'; o.frequency.value=siFreqs[i];
+      g.gain.setValueAtTime(0.25,ctx2.currentTime);
+      g.gain.exponentialRampToValueAtTime(0.001,ctx2.currentTime+dur/1000);
+      o.start(); o.stop(ctx2.currentTime+dur/1000);
+    } catch(e){}
+    setTimeout(()=>{
+      if(btn){btn.style.background=COLORS[i].bg.replace('AA','55');btn.style.boxShadow='';}
+    },dur);
+  }
+
+  function playSequence(seq, cb) {
+    accepting=false;
+    let i=0;
+    function step() {
+      if(i>=seq.length){setTimeout(cb,400);return;}
+      flashBtn(seq[i]);
+      i++;
+      setTimeout(step, 600);
+    }
+    setTimeout(step,600);
+  }
+
+  window.simonStart = function() {
+    sequence=[]; userSeq=[]; round=0;
+    document.getElementById('si-start').textContent='▶ RESTART';
+    nextRound();
+  };
+
+  function nextRound() {
+    round++;
+    userSeq=[];
+    sequence.push(Math.floor(Math.random()*4));
+    document.getElementById('si-round').textContent=round;
+    document.getElementById('si-status').textContent=`WATCH THE SEQUENCE... (${round} steps)`;
+    playSequence(sequence, ()=>{
+      accepting=true;
+      document.getElementById('si-status').textContent=`YOUR TURN! REPEAT ${round} STEPS`;
+    });
+  }
+
+  window.simonPress = function(i) {
+    if(!accepting) return;
+    flashBtn(i,200);
+    userSeq.push(i);
+    const idx=userSeq.length-1;
+    if(userSeq[idx]!==sequence[idx]) {
+      accepting=false;
+      document.getElementById('si-status').textContent=`❌ WRONG! YOU REACHED ROUND ${round}`;
+      document.getElementById('si-status').style.color='#FF4444';
+      updateHighScore('simon', round);
+      document.getElementById('si-best').textContent=state.highScores.simon;
+      playSound('lose');
+      return;
+    }
+    if(userSeq.length===sequence.length) {
+      accepting=false;
+      document.getElementById('si-status').textContent=`✅ CORRECT! GET READY...`;
+      document.getElementById('si-status').style.color='#00FFFF';
+      playSound('correct');
+      setTimeout(nextRound,900);
+    }
+  };
+}
+
+// ===========================
+//   13. TYPING SPEED TEST
+// ===========================
+function renderTyping() {
+  const wordBank = ['arcade','pixel','score','game','level','speed','jump','blast','neon','cyber',
+    'turbo','laser','power','hyper','ultra','mega','super','glitch','virus','matrix',
+    'legend','quest','dungeon','dragon','sword','shield','magic','wizard','portal','storm',
+    'thunder','lightning','rocket','galaxy','nebula','quantum','phantom','shadow','blaze','frost'];
+
+  function genText(n=15) {
+    const arr=[];
+    for(let i=0;i<n;i++) arr.push(wordBank[Math.floor(Math.random()*wordBank.length)]);
+    return arr.join(' ');
+  }
+
+  let targetText=genText(), typed='', startTime=null, finished=false, timerInterval=null, timeLeft=60;
+
+  const gc = document.getElementById('game-container');
+  gc.innerHTML = `
+    <div style="display:flex;flex-direction:column;gap:16px;">
+      <div style="display:flex;gap:16px;flex-wrap:wrap;justify-content:center;">
+        <div style="border:3px solid #00FFFF;padding:8px 18px;text-align:center;">
+          <div style="font-family:'Black Ops One',cursive;font-size:1.5rem;color:#00FFFF;" id="ty-wpm">0</div>
+          <div style="font-size:0.75rem;color:#666;">WPM</div>
+        </div>
+        <div style="border:3px solid #fff;padding:8px 18px;text-align:center;">
+          <div style="font-family:'Black Ops One',cursive;font-size:1.5rem;color:#fff;" id="ty-time">60</div>
+          <div style="font-size:0.75rem;color:#666;">SECONDS</div>
+        </div>
+        <div style="border:3px solid #555;padding:8px 18px;text-align:center;">
+          <div style="font-family:'Black Ops One',cursive;font-size:1.5rem;color:#555;" id="ty-acc">100%</div>
+          <div style="font-size:0.75rem;color:#666;">ACCURACY</div>
+        </div>
+        <div style="border:3px solid #555;padding:8px 18px;text-align:center;">
+          <div style="font-family:'Black Ops One',cursive;font-size:1.5rem;color:#555;" id="ty-best">${state.highScores.typing}</div>
+          <div style="font-size:0.75rem;color:#666;">BEST WPM</div>
+        </div>
+      </div>
+      <div id="ty-display" style="border:3px solid #333;padding:16px;font-size:clamp(0.9rem,2.5vw,1.05rem);line-height:2;letter-spacing:0.5px;min-height:80px;word-break:break-word;background:#0a0a0a;"></div>
+      <textarea id="ty-input" rows="3" placeholder="START TYPING HERE..." style="background:#000;border:3px solid #fff;color:#fff;font-size:1rem;padding:12px;resize:none;outline:none;font-family:'Space Grotesk',sans-serif;letter-spacing:0.5px;" oninput="tyInput(this.value)"></textarea>
+      <div id="ty-status" class="status-msg" style="color:#00FFFF;text-align:center;min-height:28px;"></div>
+      <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap;">
+        <button class="neo-btn px-6 py-2 text-sm" onclick="renderTyping()">🔄 NEW TEST</button>
+      </div>
+    </div>`;
+
+  document.getElementById('ty-input').addEventListener('focus',()=>{ if(!startTime&&!finished) startTimer(); });
+
+  function renderDisplay() {
+    const disp = document.getElementById('ty-display');
+    if(!disp) return;
+    let html='';
+    for(let i=0;i<targetText.length;i++) {
+      const ch=targetText[i];
+      if(i<typed.length) {
+        if(typed[i]===ch) html+=`<span style="color:#00FFFF;">${ch==' '?'&nbsp;':ch}</span>`;
+        else html+=`<span style="color:#FF4444;text-decoration:underline;">${ch==' '?'&nbsp;':ch}</span>`;
+      } else if(i===typed.length) {
+        html+=`<span style="border-bottom:2px solid #00FFFF;color:#fff;">${ch==' '?'&nbsp;':ch}</span>`;
+      } else {
+        html+=`<span style="color:#444;">${ch==' '?'&nbsp;':ch}</span>`;
+      }
+    }
+    disp.innerHTML=html;
+  }
+
+  function calcWPM() {
+    const elapsed=(Date.now()-startTime)/60000;
+    const words=typed.trim().split(/\s+/).filter(Boolean).length;
+    return Math.round(words/Math.max(elapsed,0.01));
+  }
+  function calcAcc() {
+    if(!typed.length) return 100;
+    let correct=0;
+    for(let i=0;i<typed.length;i++) if(typed[i]===targetText[i]) correct++;
+    return Math.round((correct/typed.length)*100);
+  }
+
+  function startTimer() {
+    startTime=Date.now();
+    timerInterval=setInterval(()=>{
+      timeLeft--;
+      const te=document.getElementById('ty-time');
+      if(te) te.textContent=timeLeft;
+      const wpm=calcWPM();
+      const we=document.getElementById('ty-wpm');
+      if(we) we.textContent=wpm;
+      if(timeLeft<=0) endGame();
+    },1000);
+  }
+
+  function endGame() {
+    finished=true;
+    clearInterval(timerInterval);
+    const wpm=calcWPM(), acc=calcAcc();
+    document.getElementById('ty-input').disabled=true;
+    document.getElementById('ty-status').textContent=`⏰ TIME UP! ${wpm} WPM · ${acc}% ACCURACY`;
+    updateHighScore('typing',wpm);
+    document.getElementById('ty-best').textContent=state.highScores.typing;
+    playSound(wpm>=40?'win':'lose');
+  }
+
+  window.tyInput = function(val) {
+    if(finished) return;
+    typed=val;
+    renderDisplay();
+    const acc=calcAcc();
+    const ae=document.getElementById('ty-acc');
+    if(ae) ae.textContent=acc+'%';
+    if(startTime){ const we=document.getElementById('ty-wpm'); if(we) we.textContent=calcWPM(); }
+    if(typed.length>=targetText.length) {
+      // extend text
+      targetText+=' '+genText(10);
+      renderDisplay();
+    }
+  };
+
+  renderDisplay();
+}
+
+// ===========================
+//   14. MINESWEEPER
+// ===========================
+function renderMinesweeper() {
+  const ROWS=9, COLS=9, MINES=10;
+  let board=[], revealed=[], flagged=[], firstClick=true, gameOver3=false, mineCount=MINES, startT=null;
+
+  function init() {
+    board=Array.from({length:ROWS},()=>Array(COLS).fill(0));
+    revealed=Array.from({length:ROWS},()=>Array(COLS).fill(false));
+    flagged=Array.from({length:ROWS},()=>Array(COLS).fill(false));
+    firstClick=true; gameOver3=false; mineCount=MINES; startT=null;
+  }
+  init();
+
+  const gc = document.getElementById('game-container');
+  gc.innerHTML = `
+    <div style="display:flex;flex-direction:column;gap:14px;align-items:center;">
+      <div style="display:flex;gap:14px;flex-wrap:wrap;justify-content:center;">
+        <div style="border:3px solid #FF4444;padding:8px 16px;text-align:center;">
+          <div style="font-family:'Black Ops One',cursive;font-size:1.5rem;color:#FF4444;" id="ms-mines">${MINES}</div>
+          <div style="font-size:0.75rem;color:#666;">💣 MINES</div>
+        </div>
+        <div style="border:3px solid #00FFFF;padding:8px 16px;text-align:center;">
+          <div style="font-family:'Black Ops One',cursive;font-size:1.5rem;color:#00FFFF;" id="ms-time">0</div>
+          <div style="font-size:0.75rem;color:#666;">⏱ TIME</div>
+        </div>
+        <div style="border:3px solid #555;padding:8px 16px;text-align:center;">
+          <div style="font-family:'Black Ops One',cursive;font-size:1.5rem;color:#555;" id="ms-best">${state.highScores.minesweeper}</div>
+          <div style="font-size:0.75rem;color:#666;">BEST</div>
+        </div>
+      </div>
+      <div id="ms-board" style="display:grid;grid-template-columns:repeat(9,1fr);gap:3px;padding:8px;background:#111;border:3px solid #fff;width:min(340px,95vw);box-shadow:6px 6px 0 #00FFFF;user-select:none;"></div>
+      <div id="ms-status" class="status-msg" style="color:#00FFFF;text-align:center;min-height:28px;">LEFT CLICK: REVEAL · RIGHT CLICK: FLAG</div>
+      <button class="neo-btn px-6 py-2 text-sm" onclick="renderMinesweeper()">🔄 NEW GAME</button>
+    </div>`;
+
+  let msTimer=null;
+
+  function placeMines(sr,sc) {
+    let placed=0;
+    while(placed<MINES) {
+      const r=Math.floor(Math.random()*ROWS), c=Math.floor(Math.random()*COLS);
+      if(board[r][c]===-1) continue;
+      if(Math.abs(r-sr)<=1&&Math.abs(c-sc)<=1) continue;
+      board[r][c]=-1; placed++;
+    }
+    for(let r=0;r<ROWS;r++) for(let c=0;c<COLS;c++) {
+      if(board[r][c]===-1) continue;
+      let cnt=0;
+      for(let dr=-1;dr<=1;dr++) for(let dc=-1;dc<=1;dc++){
+        const nr=r+dr,nc=c+dc;
+        if(nr>=0&&nr<ROWS&&nc>=0&&nc<COLS&&board[nr][nc]===-1) cnt++;
+      }
+      board[r][c]=cnt;
+    }
+  }
+
+  const numColors=['','#00FFFF','#00FF00','#FF4444','#FF8800','#FF0000','#00FFFF','#FF00FF','#888'];
+
+  function renderBoard() {
+    const bd=document.getElementById('ms-board');
+    if(!bd) return;
+    bd.innerHTML='';
+    for(let r=0;r<ROWS;r++) for(let c=0;c<COLS;c++) {
+      const cell=document.createElement('div');
+      const isRev=revealed[r][c], isFlag=flagged[r][c], val=board[r][c];
+      cell.style.cssText=`aspect-ratio:1;display:flex;align-items:center;justify-content:center;font-size:clamp(0.65rem,2.5vw,0.9rem);font-weight:700;cursor:none;border:2px solid;transition:all 0.1s;`;
+      if(!isRev&&!isFlag){
+        cell.style.background='#222'; cell.style.borderColor='#555'; cell.style.color='#fff';
+        cell.textContent='';
+        cell.addEventListener('click',()=>msReveal(r,c));
+        cell.addEventListener('contextmenu',e=>{e.preventDefault();msFlag(r,c);});
+        cell.addEventListener('touchstart',()=>{},{ passive:true });
+      } else if(isFlag&&!isRev){
+        cell.style.background='#330000'; cell.style.borderColor='#FF4444'; cell.textContent='🚩';
+        cell.addEventListener('contextmenu',e=>{e.preventDefault();msFlag(r,c);});
+      } else if(isRev){
+        if(val===-1){ cell.style.background='#550000'; cell.style.borderColor='#FF0000'; cell.textContent='💣'; }
+        else { cell.style.background='#0a0a0a'; cell.style.borderColor='#333'; cell.style.color=numColors[val]||'#fff'; cell.textContent=val||''; }
+      }
+      bd.appendChild(cell);
+    }
+    document.getElementById('ms-mines').textContent=mineCount;
+  }
+
+  function msReveal(r,c) {
+    if(gameOver3||revealed[r][c]||flagged[r][c]) return;
+    if(firstClick){ firstClick=false; placeMines(r,c); startTimer2(); }
+    floodReveal(r,c);
+    renderBoard();
+    checkWin3();
+  }
+
+  function floodReveal(r,c){
+    if(r<0||r>=ROWS||c<0||c>=COLS||revealed[r][c]||flagged[r][c]) return;
+    revealed[r][c]=true;
+    if(board[r][c]===-1){ gameOver3=true; revealAllMines(); renderBoard(); endMine(false); return; }
+    if(board[r][c]===0){ for(let dr=-1;dr<=1;dr++) for(let dc=-1;dc<=1;dc++) floodReveal(r+dr,c+dc); }
+  }
+
+  function msFlag(r,c) {
+    if(gameOver3||revealed[r][c]) return;
+    flagged[r][c]=!flagged[r][c];
+    mineCount+=flagged[r][c]?-1:1;
+    playSound('click');
+    renderBoard();
+  }
+
+  function revealAllMines(){
+    for(let r=0;r<ROWS;r++) for(let c=0;c<COLS;c++) if(board[r][c]===-1) revealed[r][c]=true;
+  }
+
+  function checkWin3(){
+    let safe=0;
+    for(let r=0;r<ROWS;r++) for(let c=0;c<COLS;c++) if(board[r][c]!==-1&&revealed[r][c]) safe++;
+    if(safe===ROWS*COLS-MINES) { gameOver3=true; endMine(true); }
+  }
+
+  let msTimerInt=null, msTime=0;
+  function startTimer2(){
+    msTimerInt=setInterval(()=>{
+      msTime++;
+      const te=document.getElementById('ms-time');
+      if(te) te.textContent=msTime;
+    },1000);
+  }
+
+  function endMine(won){
+    clearInterval(msTimerInt);
+    const st=document.getElementById('ms-status');
+    if(won){
+      if(st) st.textContent=`🎉 CLEARED IN ${msTime}s!`;
+      const pts=Math.max(10, 500-msTime*5);
+      updateHighScore('minesweeper',pts);
+      const be=document.getElementById('ms-best');
+      if(be) be.textContent=state.highScores.minesweeper;
+      renderBoard(); playSound('win');
+    } else {
+      if(st){st.textContent='💥 BOOM! GAME OVER!'; st.style.color='#FF4444';}
+      renderBoard(); playSound('lose');
+    }
+  }
+
+  renderBoard();
 }
 
 // ===========================
